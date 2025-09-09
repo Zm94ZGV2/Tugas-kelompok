@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Klasifikasi Zat - Rose Pine Minimalis</title>
+    <style>
+        /* Palet warna Rose Pine */
+        :root {
+            --bg: #191724;
+            --surface: #1f1d2e;
+            --text-primary: #e0def4;
+            --text-secondary: #908caa;
+            --accent: #eb6f92;
+            --button-hover: #f6c177;
+        }
+
+        /* Reset dan dasar */
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: var(--surface);
+            border-radius: 12px;
+            padding: 30px 40px;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(235, 111, 146, 0.2);
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .group-info {
+            font-style: italic;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1.5px solid var(--text-secondary);
+            background-color: var(--bg);
+            color: var(--text-primary);
+            transition: border-color 0.3s ease;
+            outline: none;
+            margin-bottom: 20px;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D'10'%20height%3D'6'%20viewBox%3D'0%200%2010%206'%20xmlns%3D'http%3A//www.w3.org/2000/svg'%3E%3Cpath%20d%3D'M0%200l5%206%205-6z'%20fill%3D'%23908caa'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 10px 6px;
+            cursor: pointer;
+        }
+        select:focus {
+            border-color: var(--accent);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--bg);
+            background-color: var(--accent);
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(235, 111, 146, 0.4);
+        }
+        button:hover,
+        button:focus {
+            background-color: var(--button-hover);
+            color: var(--surface);
+            outline: none;
+        }
+
+        ul#hasil {
+            margin-top: 25px;
+            padding-left: 20px;
+            color: var(--text-primary);
+            font-weight: 500;
+            line-height: 1.5;
+        }
+        ul#hasil li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main">
+        <h2>Klasifikasi Unsur, Senyawa, dan Campuran</h2>
+        <p class="group-info">Kelompok E: Rauf, Owen, Ghisan, Awang, Ryan, Dika, Ghani</p>
+
+        <select id="pilihan" aria-label="Pilih jenis zat">
+            <option value="senyawa">Senyawa</option>
+            <option value="homogen">Campuran Homogen</option>
+            <option value="heterogen">Campuran Heterogen</option>
+        </select>
+        <button onclick="tampilkan()">Tampilkan Contoh</button>
+
+        <ul id="hasil" aria-live="polite"></ul>
+    </div>
+
+    <script>
+        function tampilkan() {
+            const pilihan = document.getElementById("pilihan").value;
+            const hasil = document.getElementById("hasil");
+            hasil.innerHTML = "";
+
+            const data = {
+                senyawa: ["Air (H2O)", "Gula (C6H12O6)", "Garam (NaCl)"],
+                homogen: [
+                    "Air + gula",
+                    "Air + Garam",
+                    "Air + Kopi",
+                    "Air + sabun cuci piring",
+                ],
+                heterogen: ["Creamer + Air", "Minyak + Air"],
+            };
+
+            data[pilihan].forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                hasil.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
